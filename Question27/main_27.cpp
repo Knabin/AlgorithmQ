@@ -6,38 +6,31 @@ using namespace std;
 
 int main(void)
 {
-	int n, i, flag, a, b;
-
+	int n, i, flag, a;
 	cin >> n;
-	// 5
-	// 5 4 3 2 1
-	// 2 6번, 3 1번, 5 1번
-	
-	// 3
-	// 3 1번
-
-	// 4
-	// 2 2번
-
-	// 2로 나누고,, 안 나눠지면 쁠쁠
-	// 나머지가 1일 때까지 while문
-
-	cout << n << "! = ";
+	vector<int> vInt(n + 1);
 
 	for (i = n; i >= 1; --i)
 	{
+		a = i;
 		flag = 2;
-		a = b = i;
 
-		while (a != 0)
+		while(true)
 		{
-			a = b / flag;	// 2
-			b = b % flag;	// 1
-			cout << a << " ";
-			++flag;
+			if (a % flag == 0)
+			{
+				a = a / flag;
+				vInt[flag]++;
+			}
+			else flag++;
+			if (a == 1) break;
 		}
 	}
-
+	cout << n << "! = ";
+	for (i = 2; i <=n; ++i)
+	{
+		if (vInt[i] != 0) cout << vInt[i] << " ";
+	}
 
 	return 0;
 }
